@@ -379,8 +379,61 @@ hist(cabeza$RSSI,
 
 ## Extracción de Características
 
-### Integración de base de datos
+### Sensor de Cabeza sin Caída
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("pruebasRapidas.R")
 
+par(mfrow=c(2,2))
+
+plot(meanCabeza$VelInc_X,type = "l",col="blue",
+     main = "Incremento en Velocidad en X",
+     ylab = "Valor",
+     xlab = "Índice")
+plot(meanCabeza$VelInc_Y,type = "l",col="blue",
+     main = "Incremento en Velocidad en Y",
+     ylab = "Valor",
+     xlab = "Índice")
+plot(meanCabeza$VelInc_Z,type = "l",col="blue",
+     main = "Incremento en Velocidad en Z",
+     ylab = "Valor",
+     xlab = "Índice")
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("pruebasRapidas.R")
+
+par(mfrow=c(2,2))
+plot(meanCabeza$Acc_X,type = "l",col="brown",
+     main = "Aceleración en X",
+     ylab = "Valor",
+     xlab = "Índice")
+plot(meanCabeza$Acc_Y,type = "l",col="brown",
+     main = "Aceleración en Y",
+     ylab = "Valor",
+     xlab = "Índice")
+plot(meanCabeza$Acc_Z,type = "l",col="brown",
+     main = "Aceleración en Z",
+     ylab = "Valor",
+     xlab = "Índice")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("pruebasRapidas.R")
+
+par(mfrow=c(2,2))
+
+plot(meanCabeza$Gyr_X,type = "l",col="red",
+     main = "Giroscopio en X",
+     ylab = "Valor",
+     xlab = "Índice")
+plot(meanCabeza$Gyr_Y,type = "l",col="red",
+     main = "Giroscopio en Y",
+     ylab = "Valor",
+     xlab = "Índice")
+plot(meanCabeza$Gyr_Z,type = "l",col="red",
+     main = "Giroscopio en Z",
+     ylab = "Valor",
+     xlab = "Índice")
+```
 
 
 ## Referencias

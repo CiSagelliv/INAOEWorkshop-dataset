@@ -1,7 +1,7 @@
 library(readr)
 
 ##############################################################################
-#####             CABEZA
+#####             CABEZA sin caer
 ##############################################################################
 
 dat1 <- read_table2("data/Tests/101/Testler Export/801-Yurume Ileri/Test_1/340506.txt", skip = 4)
@@ -57,7 +57,7 @@ names(meanCabeza) <- names(dat1)
 
 
 ##############################################################################
-#####             Chest
+#####             Chest sin caer
 ##############################################################################
 
 dat1 <- read_table2("data/Tests/101/Testler Export/801-Yurume Ileri/Test_1/340527.txt", skip = 4)
@@ -112,7 +112,7 @@ names(meanChest) <- names(dat1)
 
 
 ##############################################################################
-#####             Waist
+#####             Waist sin caer
 ##############################################################################
 
 dat1 <- read_table2("data/Tests/101/Testler Export/801-Yurume Ileri/Test_1/340535.txt", skip = 4)
@@ -165,40 +165,57 @@ meanWaist <- data.frame(meanVelInc_X, meanVelInc_Y, meanVelInc_Z, meanAcc_X, mea
 
 names(meanWaist) <- names(dat1)
 
+##############################################################################
+#####             Chest caida 901
+##############################################################################
+
+datF1 <- read_table2("data/Tests/101/Testler Export/901-OneDogruUzanma/Test_1/340527.txt", skip = 4)
+datF1 <- as.data.frame(datF1)
+datF1 <- datF1[c(-1,-2,-6:-9,-23,-24)]
+
+datF2 <- read_table2("data/Tests/101/Testler Export/901-OneDogruUzanma/Test_2/340527.txt", skip = 4)
+datF2 <- as.data.frame(datF2)
+datF2 <- datF2[c(-1,-2,-6:-9,-23,-24)]
+
+datF3 <- read_table2("data/Tests/101/Testler Export/901-OneDogruUzanma/Test_3/340527.txt", skip = 4)
+datF3 <- as.data.frame(datF3)
+datF3 <- datF3[c(-1,-2,-6:-9,-23,-24)]
+
+datF4 <- read_table2("data/Tests/101/Testler Export/901-OneDogruUzanma/Test_4/340527.txt", skip = 4)
+datF4 <- as.data.frame(datF4)
+datF4 <- datF4[c(-1,-2,-6:-9,-23,-24)]
+
+datF5 <- read_table2("data/Tests/101/Testler Export/901-OneDogruUzanma/Test_5/340527.txt", skip = 4)
+datF5 <- as.data.frame(datF5)
+datF5 <- datF5[c(-1,-2,-6:-9,-23,-24)]
+
+datF6 <- read_table2("data/Tests/101/Testler Export/901-OneDogruUzanma/Test_6/340527.txt", skip = 4)
+datF6 <- as.data.frame(datF6)
+datF6 <- datF6[c(-1,-2,-6:-9,-23,-24)]
+
+#mean(c(dat1[2],dat2[2],dat3[2],dat4[2],dat5[2],dat6[2]))
 
 
+meanVelInc_X <- data.frame(rowMeans(cbind(datF1[,1],datF2[,1],datF3[,1],datF4[,1],datF5[,1],datF6[,1])))
+meanVelInc_Y <- data.frame(rowMeans(cbind(datF1[,2],datF2[,2],datF3[,2],datF4[,2],datF5[,2],datF6[,2])))
+meanVelInc_Z <- data.frame(rowMeans(cbind(datF1[,3],datF2[,3],datF3[,3],datF4[,3],datF5[,3],datF6[,3])))
+meanAcc_X <- data.frame(rowMeans(cbind(datF1[,4],datF2[,4],datF3[,4],datF4[,4],datF5[,4],datF6[,4])))
+meanAcc_Y <- data.frame(rowMeans(cbind(datF1[,5],datF2[,5],datF3[,5],datF4[,5],datF5[,5],datF6[,5])))
+meanAcc_Z <- data.frame(rowMeans(cbind(datF1[,6],datF2[,6],datF3[,6],datF4[,6],datF5[,6],datF6[,6])))
+meanGyr_X <- data.frame(rowMeans(cbind(datF1[,7],datF2[,7],datF3[,7],datF4[,7],datF5[,7],datF6[,7])))
+meanGyr_Y <- data.frame(rowMeans(cbind(datF1[,8],datF2[,8],datF3[,8],datF4[,8],datF5[,8],datF6[,8])))
+meanGyr_Z <- data.frame(rowMeans(cbind(datF1[,9],datF2[,9],datF3[,9],datF4[,9],datF5[,9],datF6[,9])))
+meanMag_X <- data.frame(rowMeans(cbind(datF1[,10],datF2[,10],datF3[,10],datF4[,10],datF5[,10],datF6[,10])))
+meanMag_Y <- data.frame(rowMeans(cbind(datF1[,11],datF2[,11],datF3[,11],datF4[,11],datF5[,11],datF6[,11])))
+meanMag_Z <- data.frame(rowMeans(cbind(datF1[,12],datF2[,12],datF3[,12],datF4[,12],datF5[,12],datF6[,12])))
+meanPressure <- data.frame(rowMeans(cbind(datF1[,13],datF2[,13],datF3[,13],datF4[,13],datF5[,13],datF6[,13])))
+meanRoll <- data.frame(rowMeans(cbind(datF1[,14],datF2[,14],datF3[,14],datF4[,14],datF5[,14],datF6[,14])))
+meanPitch <- data.frame(rowMeans(cbind(datF1[,15],datF2[,15],datF3[,15],datF4[,15],datF5[,15],datF6[,15])))
+meanYaw <- data.frame(rowMeans(cbind(datF1[,16],datF2[,16],datF3[,16],datF4[,16],datF5[,16],datF6[,16])))
 
+meanChestF <- data.frame(meanVelInc_X, meanVelInc_Y, meanVelInc_Z, meanAcc_X, meanAcc_Y, meanAcc_Z,
+                        meanGyr_X, meanGyr_Y, meanGyr_Z, meanMag_X, meanMag_Y, meanMag_Z,
+                        meanPressure, meanRoll, meanPitch, meanYaw)
 
+names(meanChestF) <- names(datF1)
 
-
-
-cabeza <- as.data.frame(dat)
-cabeza <- cabeza[c(-1,-6:-9,-24)]
-
-names(cabeza)
-
-source('continuousQO.R')
-resumen <- QOfContinuousF(cabeza)
-resumen
-
-getwd()
-
-dataDirectories = list.dirs("data/Tests/101/Testler Export")[3]
-directorynames = basename(dataDirectories)
-
-head(dataDirectories)
-
-
-
-library(ggplot2)
-
-cabeza$VelInc_X
-
-ggplot(cabeza, aes(x = VelInc_X)) + 
-  geom_histogram(color = "black", fill = "gray") +
-  labs(title = "Incremento de Velocidad en X")
-
-ggplot(cabeza, aes(x="VelInc_X", y=VelInc_X)) +
-  geom_boxplot() +
-  geom_jitter(shape=16, position=position_jitter(0.2)) +
-  labs(title = "Incremento de Velocidad en X", y = "Valor")
