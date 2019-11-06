@@ -47,24 +47,57 @@ kable(resumen) %>%
 ### Incremento en Velocidad
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-par(mfrow=c(2,2))
-hist(cabeza$VelInc_X,
-     main = "Incremento en Velocidad en X",
-     col = "pink",
-     ylab = "Frecuencia",
-     xlab = "VelInc_X")
+library(ggpubr)
+#par(mfrow=c(3,2))
 
-hist(cabeza$VelInc_Y,
-     main = "Incremento en Velocidad en Y",
-     col = "pink",
-     ylab = "Frecuencia",
-     xlab = "VelInc_Y")
+velIncXHist <- ggplot(cabeza, aes(x = VelInc_X)) + 
+  geom_histogram(color = "black", fill = "gray") +
+  labs(title = "Incremento de Velocidad en X")
 
-hist(cabeza$VelInc_Z,
-     main = "Incremento en Velocidad en Z",
-     col = "pink",
-     ylab = "Frecuencia",
-     xlab = "VelInc_Z")
+velIncXBox <- ggplot(cabeza, aes(x="VelInc_X", y=VelInc_X)) +
+  geom_boxplot() +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+velIncYHist <- ggplot(cabeza, aes(x = VelInc_Y)) + 
+  geom_histogram(color = "black", fill = "gray") +
+  labs(title = "Incremento de Velocidad en Y")
+
+velIncYBox <- ggplot(cabeza, aes(x="VelInc_Y", y=VelInc_Y)) +
+  geom_boxplot() +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+velIncZHist <- ggplot(cabeza, aes(x = VelInc_Z)) + 
+  geom_histogram(color = "black", fill = "gray") +
+  labs(title = "Incremento de Velocidad en Z")
+
+velIncZBox <- ggplot(cabeza, aes(x="VelInc_Z", y=VelInc_Z)) +
+  geom_boxplot() +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+ggarrange(velIncXHist, velIncXBox, velIncYHist, velIncYBox, velIncZHist, velIncZBox,
+          ncol = 2,
+          nrow = 3)
+
+#hist(cabeza$VelInc_X,
+#     main = "Incremento en Velocidad en X",
+#     col = "pink",
+#     ylab = "Frecuencia",
+#     xlab = "VelInc_X")
+
+#hist(cabeza$VelInc_Y,
+#     main = "Incremento en Velocidad en Y",
+#     col = "pink",
+#     ylab = "Frecuencia",
+#     xlab = "VelInc_Y")
+
+#hist(cabeza$VelInc_Z,
+#     main = "Incremento en Velocidad en Z",
+#     col = "pink",
+#     ylab = "Frecuencia",
+#     xlab = "VelInc_Z")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -82,25 +115,58 @@ plot_ly(cabeza, x = ~VelInc_X, y = ~VelInc_Y, z = ~VelInc_Z, size = 5, color = "
 ### Aceleración
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-par(mfrow=c(2,2))
 
-hist(cabeza$Acc_X,
-     main = "Aceleración en X",
-     col = "lightblue",
-     ylab = "Frecuencia",
-     xlab = "Acc_X")
+accXHist <- ggplot(cabeza, aes(x = Acc_X)) + 
+  geom_histogram(color = "black", fill = "lightblue") +
+  labs(title = "Acceleración en X")
 
-hist(cabeza$Acc_Y,
-     main = "Aceleración en Y",
-     col = "lightblue",
-     ylab = "Frecuencia",
-     xlab = "Acc_Y")
+accXBox <- ggplot(cabeza, aes(x="Acc_X", y=Acc_X)) +
+  geom_boxplot(color = "lightblue") +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
 
-hist(cabeza$Acc_Z,
-     main = "Aceleración en Z",
-     col = "lightblue",
-     ylab = "Frecuencia",
-     xlab = "Acc_Z")
+accYHist <- ggplot(cabeza, aes(x = Acc_Y)) + 
+  geom_histogram(color = "black", fill = "lightblue") +
+  labs(title = "Acceleración en Y")
+
+accYBox <- ggplot(cabeza, aes(x="Acc_Y", y=Acc_Y)) +
+  geom_boxplot(color = "lightblue") +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+accZHist <- ggplot(cabeza, aes(x = Acc_Z)) + 
+  geom_histogram(color = "black", fill = "lightblue") +
+  labs(title = "Acceleración en Z")
+
+accZBox <- ggplot(cabeza, aes(x="Acc_Z", y=Acc_Z)) +
+  geom_boxplot(color = "lightblue") +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+ggarrange(accXHist, accXBox, accYHist, accYBox, accZHist, accZBox,
+          ncol = 2,
+          nrow = 3)
+
+
+#par(mfrow=c(2,2))
+
+#hist(cabeza$Acc_X,
+#     main = "Aceleración en X",
+#     col = "lightblue",
+#     ylab = "Frecuencia",
+#     xlab = "Acc_X")
+
+#hist(cabeza$Acc_Y,
+#     main = "Aceleración en Y",
+#     col = "lightblue",
+#     ylab = "Frecuencia",
+#     xlab = "Acc_Y")
+
+#hist(cabeza$Acc_Z,
+#     main = "Aceleración en Z",
+#     col = "lightblue",
+#     ylab = "Frecuencia",
+#     xlab = "Acc_Z")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -116,25 +182,63 @@ plot_ly(cabeza, x = ~Acc_X, y = ~Acc_Y, z = ~Acc_Z, size = 5) %>%
 
 ### Giroscopio
 
-```{r echo=FALSE}
-par(mfrow=c(2,2))
-hist(cabeza$Gyr_X,
-     main = "Giroscopio en X",
-     col = "lightgreen",
-     ylab = "Frecuencia",
-     xlab = "Gyr_X")
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-hist(cabeza$Gyr_Y,
-     main = "Giroscopio en Y",
-     col = "lightgreen",
-     ylab = "Frecuencia",
-     xlab = "Gyr_Y")
+gyrXHist <- ggplot(cabeza, aes(x = Gyr_X)) + 
+  geom_histogram(color = "black", fill = "lightgreen") +
+  labs(title = "Giroscopio en X")
 
-hist(cabeza$Gyr_Z,
-     main = "Giroscopio en Z",
-     col = "lightgreen",
-     ylab = "Frecuencia",
-     xlab = "Gyr_Z")
+gyrXBox <- ggplot(cabeza, aes(x="Gyr_X", y=Gyr_X)) +
+  geom_boxplot(color = "lightgreen") +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+gyrYHist <- ggplot(cabeza, aes(x = Gyr_Y)) + 
+  geom_histogram(color = "black", fill = "lightgreen") +
+  labs(title = "Giroscopio en Y")
+
+gyrYBox <- ggplot(cabeza, aes(x="Gyr_Y", y=Gyr_Y)) +
+  geom_boxplot(color = "lightgreen") +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+gyrZHist <- ggplot(cabeza, aes(x = Gyr_Z)) + 
+  geom_histogram(color = "black", fill = "lightgreen") +
+  labs(title = "Gyroscopio en Z")
+
+gyrZBox <- ggplot(cabeza, aes(x="Gyr_Z", y=Gyr_Z)) +
+  geom_boxplot(color = "lightgreen") +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+ggarrange(gyrXHist, gyrXBox, gyrYHist, gyrYBox, gyrZHist, gyrZBox,
+          ncol = 2,
+          nrow = 3)
+
+
+
+
+
+
+
+#par(mfrow=c(2,2))
+#hist(cabeza$Gyr_X,
+#     main = "Giroscopio en X",
+#     col = "lightgreen",
+#     ylab = "Frecuencia",
+#     xlab = "Gyr_X")
+
+#hist(cabeza$Gyr_Y,
+#     main = "Giroscopio en Y",
+#     col = "lightgreen",
+#     ylab = "Frecuencia",
+#     xlab = "Gyr_Y")
+
+#hist(cabeza$Gyr_Z,
+#     main = "Giroscopio en Z",
+#     col = "lightgreen",
+#     ylab = "Frecuencia",
+#     xlab = "Gyr_Z")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -150,25 +254,60 @@ plot_ly(cabeza, x = ~Gyr_X, y = ~Gyr_Y, z = ~Gyr_Z, size = 5) %>%
 
 ### Magnitud
 
-```{r echo=FALSE}
-par(mfrow=c(2,2))
-hist(cabeza$Mag_X,
-     main = "Magnitud en X",
-     col = "#5EB7B7",
-     ylab = "Frecuencia",
-     xlab = "Mag_X")
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-hist(cabeza$Mag_Y,
-     main = "Magnitud en Y",
-     col = "#5EB7B7",
-     ylab = "Frecuencia",
-     xlab = "Mag_Y")
+library(ggpubr)
 
-hist(cabeza$Mag_Z,
-     main = "Magnitud en Z",
-     col = "#5EB7B7",
-     ylab = "Frecuencia",
-     xlab = "Mag_Z")
+magXHist <- ggplot(cabeza, aes(x = Mag_X)) + 
+  geom_histogram(color = "black", fill = "#5EB7B7") +
+  labs(title = "Magnitud en X")
+
+magXBox <- ggplot(cabeza, aes(x="Mag_X", y=Mag_X)) +
+  geom_boxplot(color = "black", fill = "#5EB7B7") +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+magYHist <- ggplot(cabeza, aes(x = Mag_X)) + 
+  geom_histogram(color = "black", fill = "#5EB7B7") +
+  labs(title = "Magnitud en Y")
+
+magYBox <- ggplot(cabeza, aes(x="Mag_Y", y=Mag_Y)) +
+  geom_boxplot(color = "black",fill = "#5EB7B7") +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+magZHist <- ggplot(cabeza, aes(x = Mag_Z)) + 
+  geom_histogram(color = "black", fill = "#5EB7B7") +
+  labs(title = "Magnitud en Z")
+
+magZBox <- ggplot(cabeza, aes(x="Mag_Z", y=Mag_Z)) +
+  geom_boxplot(color = "black",fill = "#5EB7B7") +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  labs(y = "Valor")
+
+ggarrange(magXHist, magXBox, magYHist, magYBox, magZHist, magZBox,
+          ncol = 2,
+          nrow = 3)
+
+
+#par(mfrow=c(2,2))
+#hist(cabeza$Mag_X,
+#     main = "Magnitud en X",
+#     col = "#5EB7B7",
+#     ylab = "Frecuencia",
+#     xlab = "Mag_X")
+
+#hist(cabeza$Mag_Y,
+#     main = "Magnitud en Y",
+#     col = "#5EB7B7",
+#     ylab = "Frecuencia",
+#     xlab = "Mag_Y")
+
+#hist(cabeza$Mag_Z,
+#     main = "Magnitud en Z",
+#     col = "#5EB7B7",
+#     ylab = "Frecuencia",
+#     xlab = "Mag_Z")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -185,11 +324,15 @@ plot_ly(cabeza, x = ~Mag_X, y = ~Mag_Y, z = ~Mag_Z, size = 5) %>%
 
 ### Pressure
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-hist(cabeza$Pressure,
-     main = "Presión",
-     col = "#ECEBA7",
-     ylab = "Frecuencia",
-     xlab = "Pressure")
+ggplot(cabeza, aes(x = Pressure)) + 
+  geom_histogram(color = "black", fill = "#ECEBA7") +
+  labs(title = "Presión")
+
+#hist(cabeza$Pressure,
+#     main = "Presión",
+#     col = "#ECEBA7",
+#     ylab = "Frecuencia",
+#     xlab = "Pressure")
 ```
 
 ### Roll
