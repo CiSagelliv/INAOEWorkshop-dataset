@@ -1,6 +1,6 @@
 ---
 title: "Preproceso de los Datos"
-author: "Cinthya Villegas, Juan Carlos Sonderegger, Arón Gallardo, Gener Avilés"
+author: "Cinthya Villegas, Juan Carlos Sonderegger, Iván Gallardo, Gener Avilés"
 date: "11/5/2019"
 output:
   html_document: default
