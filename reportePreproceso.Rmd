@@ -1,0 +1,238 @@
+---
+title: "Preproceso de los Datos"
+author: "Cinthya Villegas, Juan Carlos Sonderegger, Arón Gallardo, Gener Avilés"
+date: "11/5/2019"
+output:
+  html_document: default
+  #pdf_document: default
+bibliography: references.bib
+csl: ieee.csl
+---
+
+## Seleccionando el sensor de cabeza del paciente 101 con actividad 801.
+
+### Reporte de calidad de los datos.
+
+El siguiente reporte de calidad de los datos se ha realizado de a cuerdo a lo propuesto por [@kelleher2015fundamentals, pp. 102-104].
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+library(readr)
+dat <- read_table2("data/Tests/101/Testler Export/801-Yurume Ileri/Test_1/340506.txt", 
+    skip = 4)
+cabeza <- as.data.frame(dat)
+cabeza <- cabeza[c(-1,-6:-9,-24)]
+
+source('continuousQO.R')
+resumen <- QOfContinuousF(cabeza)
+
+kable(resumen) %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, border_right = T) %>%
+  column_spec(2, border_right = T) %>%
+  column_spec(3, border_right = T) %>%
+  column_spec(4, border_right = T) %>%
+  column_spec(5, border_right = T) %>%
+  column_spec(6, border_right = T) %>%
+  column_spec(7, border_right = T) %>%
+  column_spec(8, border_right = T) %>%
+  column_spec(9, border_right = T) %>%
+  column_spec(10, border_right = T)
+```
+
+
+
+## Visualizaciones iniciales
+
+### Incremento en Velocidad
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+hist(cabeza$VelInc_X,
+     main = "Incremento en Velocidad en X",
+     col = "pink",
+     ylab = "Frecuencia",
+     xlab = "VelInc_X")
+
+hist(cabeza$VelInc_Y,
+     main = "Incremento en Velocidad en Y",
+     col = "pink",
+     ylab = "Frecuencia",
+     xlab = "VelInc_Y")
+
+hist(cabeza$VelInc_Z,
+     main = "Incremento en Velocidad en Z",
+     col = "pink",
+     ylab = "Frecuencia",
+     xlab = "VelInc_Z")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#library(plot3D)
+library(plotly)
+
+plot_ly(cabeza, x = ~VelInc_X, y = ~VelInc_Y, z = ~VelInc_Z, size = 5, color = "pink") %>%
+  layout(title = 'Incremento de Velocidad 3D')
+#scatter3D(cabeza$VelInc_X, cabeza$VelInc_Y, cabeza$VelInc_Z,
+#          colvar = NULL, col = "blue", pch = 19, cex = 0.6,
+#          phi = 15, theta = 20)
+```
+
+
+### Aceleración
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+
+hist(cabeza$Acc_X,
+     main = "Aceleración en X",
+     col = "lightblue",
+     ylab = "Frecuencia",
+     xlab = "Acc_X")
+
+hist(cabeza$Acc_Y,
+     main = "Aceleración en Y",
+     col = "lightblue",
+     ylab = "Frecuencia",
+     xlab = "Acc_Y")
+
+hist(cabeza$Acc_Z,
+     main = "Aceleración en Z",
+     col = "lightblue",
+     ylab = "Frecuencia",
+     xlab = "Acc_Z")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#library(plot3D)
+library(plotly)
+
+plot_ly(cabeza, x = ~Acc_X, y = ~Acc_Y, z = ~Acc_Z, size = 5) %>%
+  layout(title = 'Aceleración')
+#scatter3D(cabeza$VelInc_X, cabeza$VelInc_Y, cabeza$VelInc_Z,
+#          colvar = NULL, col = "blue", pch = 19, cex = 0.6,
+#          phi = 15, theta = 20)
+```
+
+### Giroscopio
+
+```{r echo=FALSE}
+par(mfrow=c(2,2))
+hist(cabeza$Gyr_X,
+     main = "Giroscopio en X",
+     col = "lightgreen",
+     ylab = "Frecuencia",
+     xlab = "Gyr_X")
+
+hist(cabeza$Gyr_Y,
+     main = "Giroscopio en Y",
+     col = "lightgreen",
+     ylab = "Frecuencia",
+     xlab = "Gyr_Y")
+
+hist(cabeza$Gyr_Z,
+     main = "Giroscopio en Z",
+     col = "lightgreen",
+     ylab = "Frecuencia",
+     xlab = "Gyr_Z")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#library(plot3D)
+library(plotly)
+
+plot_ly(cabeza, x = ~Gyr_X, y = ~Gyr_Y, z = ~Gyr_Z, size = 5) %>%
+  layout(title = 'Giroscopio')
+#scatter3D(cabeza$VelInc_X, cabeza$VelInc_Y, cabeza$VelInc_Z,
+#          colvar = NULL, col = "blue", pch = 19, cex = 0.6,
+#          phi = 15, theta = 20)
+```
+
+### Magnitud
+
+```{r echo=FALSE}
+par(mfrow=c(2,2))
+hist(cabeza$Mag_X,
+     main = "Magnitud en X",
+     col = "#5EB7B7",
+     ylab = "Frecuencia",
+     xlab = "Mag_X")
+
+hist(cabeza$Mag_Y,
+     main = "Magnitud en Y",
+     col = "#5EB7B7",
+     ylab = "Frecuencia",
+     xlab = "Mag_Y")
+
+hist(cabeza$Mag_Z,
+     main = "Magnitud en Z",
+     col = "#5EB7B7",
+     ylab = "Frecuencia",
+     xlab = "Mag_Z")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#library(plot3D)
+library(plotly)
+
+plot_ly(cabeza, x = ~Mag_X, y = ~Mag_Y, z = ~Mag_Z, size = 5) %>%
+  layout(title = 'Magnitud')
+#scatter3D(cabeza$VelInc_X, cabeza$VelInc_Y, cabeza$VelInc_Z,
+#          colvar = NULL, col = "blue", pch = 19, cex = 0.6,
+#          phi = 15, theta = 20)
+```
+
+
+### Pressure
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+hist(cabeza$Pressure,
+     main = "Presión",
+     col = "#ECEBA7",
+     ylab = "Frecuencia",
+     xlab = "Pressure")
+```
+
+### Roll
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+hist(cabeza$Roll,
+     main = "Roll",
+     col = "#EBCE95",
+     ylab = "Frecuencia",
+     xlab = "Roll")
+```
+
+### Pitch
+```{r echo=FALSE}
+hist(cabeza$Pitch,
+     main = "Pitch",
+     col = "orange",
+     ylab = "Frecuencia",
+     xlab = "Pitch")
+```
+
+### Yaw
+```{r echo=FALSE}
+hist(cabeza$Yaw,
+     main = "Yaw",
+     col = "violet",
+     ylab = "Frecuencia",
+     xlab = "Yaw")
+```
+
+### RSSI
+```{r echo=FALSE}
+hist(cabeza$RSSI,
+     main = "RSSI",
+     col = "gray",
+     ylab = "Frecuencia",
+     xlab = "RSSI")
+```
+
+
+### Observaciones Iniciales
+
+- La variable `Temperatura` no cuenta con datos relevantes para nuestro análisis.
+- 
+
+
+## Referencias
